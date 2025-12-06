@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">AdminPanel</div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    Traffic Analysis
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
+                    Settings
+                </a>
+                <a href="/" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Back to Home
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <header class="content-header">
+                <h2 class="page-title">Dashboard Overview</h2>
+                <div class="header-actions">
+                    <div class="status-badge normal" id="systemStatusBadge">
+                        <span class="status-dot"></span>
+                        System Normal
+                    </div>
+                </div>
+            </header>
+
+            <!-- Alert Banner -->
+            <div id="alertBanner" class="alert-banner">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span id="alertMessage">High Traffic Detected!</span>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Requests</span>
+                        <div class="stat-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="totalRequests">0</div>
+                    <div class="stat-trend positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                        <span>+12% vs last hour</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Requests / Sec</span>
+                        <div class="stat-icon purple">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="rpsValue">0</div>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill rps" id="rpsBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">CPU Load</span>
+                        <div class="stat-icon cyan">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                <rect x="9" y="9" width="6" height="6"></rect>
+                                <line x1="9" y1="1" x2="9" y2="4"></line>
+                                <line x1="15" y1="1" x2="15" y2="4"></line>
+                                <line x1="9" y1="20" x2="9" y2="23"></line>
+                                <line x1="15" y1="20" x2="15" y2="23"></line>
+                                <line x1="20" y1="9" x2="23" y2="9"></line>
+                                <line x1="20" y1="14" x2="23" y2="14"></line>
+                                <line x1="1" y1="9" x2="4" y2="9"></line>
+                                <line x1="1" y1="14" x2="4" y2="14"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="cpuValue">0%</div>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill cpu" id="cpuBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Active Connections</span>
+                        <div class="stat-icon green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="concurrentValue">0</div>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill concurrent" id="concurrentBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chart Section -->
+            <div class="chart-section">
+                <div class="section-header">
+                    <h3 class="section-title">Traffic Analysis</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot traffic"></span>
+                            <span>RPS (Green)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot threshold"></span>
+                            <span>Failures (Red)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 250px; position: relative; margin-bottom: 30px;">
+                    <canvas id="trafficChartCanvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Response Times Chart -->
+            <div class="chart-section">
+                <div class="section-header">
+                    <h3 class="section-title">Response Times (ms)</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #fdcb6e;"></span>
+                            <span>50th percentile</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #a29bfe;"></span>
+                            <span>95th percentile</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 250px; position: relative; margin-bottom: 30px;">
+                    <canvas id="latencyChartCanvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Users Chart -->
+            <div class="chart-section">
+                <div class="section-header">
+                    <h3 class="section-title">Number of Users</h3>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #0984e3;"></span>
+                            <span>Concurrent Users</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 250px; position: relative;">
+                    <canvas id="usersChartCanvas"></canvas>
+                </div>
+            </div>
+
+            <!-- DDoS Mitigation Settings -->
+            <div class="control-section">
+                <h3 class="section-title">DDoS Mitigation</h3>
+                <div class="control-grid">
+                    <div class="control-card">
+                        <h4>Rate Limiting</h4>
+                        <p>Limit maximum requests per minute per IP.</p>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <input type="number" id="rateLimitInput" class="form-input" value="60"
+                                style="padding: 8px; border: 1px solid #ddd; border-radius: 6px; width: 100px;">
+                            <button class="btn btn-primary" onclick="updateRateLimit()"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Set Limit</button>
+                        </div>
+                        <small style="color: #666;">Current: <span id="currentLimit">60</span> req/min</small>
+                    </div>
+
+                    <div class="control-card danger">
+                        <h4>Emergency Mode</h4>
+                        <p>Block all traffic except whitelisted IPs.</p>
+                        <button class="btn btn-danger" onclick="simulateSpike('high')">
+                            Activate Lockdown
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Controls -->
+            <div class="control-section">
+                <h3 class="section-title">Simulation Controls</h3>
+                <div class="control-grid">
+                    <div class="control-card">
+                        <h4>Normal Traffic</h4>
+                        <p>Simulate standard user activity.</p>
+                        <button class="btn btn-primary" onclick="simulateSpike('low')">
+                            Start Normal Load
+                        </button>
+                    </div>
+                    <div class="control-card">
+                        <h4>Traffic Spike</h4>
+                        <p>Simulate a sudden surge in requests.</p>
+                        <button class="btn btn-warning" onclick="simulateSpike('medium')">
+                            Trigger Spike
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+    "name": "ddos-simulation-dashboard",
+    "version": "1.0.0",
+    "description": "Educational DDoS Simulation Dashboard with Node.js Backend",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node server.js"
+    },
+    "keywords": [
+        "ddos",
+        "simulation",
+        "security",
+        "education",
+        "dashboard"
+    ],
+    "author": "Student Portfolio",
+    "license": "MIT",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "express-rate-limit": "^7.1.5",
+        "helmet": "^7.1.0"
+    }
+}
