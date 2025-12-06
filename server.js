@@ -122,6 +122,18 @@ app.get("/api/status", countRequests, async (req, res) => {
     const jitter = Math.floor(Math.random() * 200);
     const delay = Math.min(SLOW_MAX_MS, baseLatency + loadLatency + jitter);
 
+    // 80% chance of 503 when load >= 100%
+    if (simulatedLoad >= 100 && Math.random() < 0.8) {
+        await sleep(100);
+        recentFailures++;
+        return res.status(503).json({
+            status: "down",
+            message: "503 Service Unavailable - Server Overloaded",
+            simulatedLoad,
+            timestamp: new Date().toISOString()
+        });
+    }
+
     // 20% chance of 503 when load > 85%
     if (simulatedLoad > 85 && Math.random() < 0.2) {
         await sleep(200);

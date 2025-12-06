@@ -129,11 +129,20 @@ const usersChart = new Chart(usersCtx, {
     options: commonOptions
 });
 
-const maxDataPoints = 60;
+const maxDataPoints = 60; // 60 minutes = 1 hour history
+let lastMinute = -1;  // Track minute changes
 
 function updateCharts(data) {
     const now = new Date();
-    const timeLabel = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const currentMinute = now.getMinutes();
+
+    // Only update chart once per minute (aggregate data)
+    if (currentMinute === lastMinute) {
+        return; // Skip, same minute
+    }
+    lastMinute = currentMinute;
+
+    const timeLabel = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
     // Helper to update a chart
     const pushData = (chart, values) => {
